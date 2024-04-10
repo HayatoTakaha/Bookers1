@@ -1,4 +1,6 @@
 class BookController < ApplicationController
   def post
   end
-end
+
+def @book = 'book'
+ end
