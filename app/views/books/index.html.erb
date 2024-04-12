@@ -1,55 +1,47 @@
 <!DOCTYPE HTML>
 <html lang="ja">
-  <head>
+<head>
     <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width,initial-sca    <le=1.0">
-    <script src="https://kit.fontawesome.com/96781c3f85.js" crossorigin="anonymous"></script>
-
-
-    <link rel="stylesheet" href="style.css"/>
-  </head>
+</head>
 
   <body>
+
  <h1>Books</h1>
-  <table>
-     <thead>
-      <tr>
-      <th>Title</th>
-      <th>Body</th>
-      <th colspan="3"></th>
-      </tr>
-     </thead>
-  
+
+<table>
+ <thead>
+  <tr>
+   <th>Title</th>
+   <th>Body</th>
+  </tr>
+  </thead>
+
   <tbody>
-   <tr>
-    <td>リーダブルコード</td>
-    <td>より良いコードを書くためのシンプルで実践的なテクニック</td>
-    <td>
-     <a class="show" href"/books">Show</a>
-    </td>
-    <td>
-     <a class="edit" href"/books">Edit</a>
-    </td>
-    <td>
-     <a date-confirm="Are you sure?" class="destroy" rel="nofollow" date-method="delete" href="/books">Destroy</a>
-    </td>
-   </tr>
-   
-   <tr>
-    <td>トラブル知らずのシステム設計</td>
-    <td>システム設計の要点を図解で説明してくれます</td>
-    <td>
-     <a class="show" href"/books">Show</a>
-    </td>
-    <td>
-     <a class="edit" href"/books">Edit</a>
-    </td>
-    <td>
-     <a date-confirm="Are you sure?" class="destroy" rel="nofollow" date-method="delete" href="/books">Destroy</a>
-    </td>
-   </tr>
-   
-  </tbody>
-</table>
-  </body>
+    <tr>
+    <% @book.each do |book| %>
+    <td><%= book.title %></td>
+    <td><%= book.body %></td>
+    <td><a href='/books'>Show</a></td>
+    <td><a href="/books">Edit</a></td>
+    <td><a date-confirm="Are you sure?" class="destroy" rel="nofollow" date-method="delete" href="/books">Destroy</a></td>
+    </tr>
+ <% end %>
+ </tbody>
+  </table>
+  
+<h2>New book</h2>
+
+<p>title</p>
+<%= form_with model: Book do |f| %>
+  <%= f.text_field :title %>
+  <p>body</p>
+  <%= f.text_area :body %>
+
+  <p><%= f.submit 'Create Book' %></p>
+  
+<% end %>
+
+
+</body>
 </html>
+
