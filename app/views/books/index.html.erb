@@ -16,29 +16,30 @@
   </tr>
   </thead>
 
-  <tbody>
+<tbody>
     <tr>
     <% @book.each do |book| %>
     <td><%= book.title %></td>
     <td><%= book.body %></td>
-    <td><a href='/books'>Show</a></td>
-    <td><a href="/books">Edit</a></td>
-    <td><a date-confirm="Are you sure?" class="destroy" rel="nofollow" date-method="delete" href="/books">Destroy</a></td>
+    <td><%= link_to "Show", book_path(book.id) %></td>
+    <td><%= link_to "Edit", edit_book_path(book) %></td>
+   <td> <%= link_to "destroy", book_path(book.id), method: :delete, "data-confirm" => "Are you sure?" %></td>
     </tr>
  <% end %>
  </tbody>
   </table>
-  
+
 <h2>New book</h2>
 
 <p>title</p>
-<%= form_with model: Book do |f| %>
+<%= form_with model: Book.new do |f| %>
+
   <%= f.text_field :title %>
   <p>body</p>
   <%= f.text_area :body %>
 
   <p><%= f.submit 'Create Book' %></p>
-  
+
 <% end %>
 
 
